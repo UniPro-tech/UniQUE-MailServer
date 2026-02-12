@@ -52,7 +52,7 @@ func RenderEmailChangeVerificationHTML(appName, baseURL, code, copyrightName str
 
 	data := map[string]interface{}{
 		"AppName":       appName,
-		"VerifyURL":     fmt.Sprintf("%s/email-verify?code=%s", baseURL, code),
+		"BaseURL":       baseURL,
 		"Code":          code,
 		"Year":          time.Now().Year(),
 		"CopyrightName": copyrightName,
