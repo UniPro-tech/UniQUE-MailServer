@@ -29,12 +29,12 @@ func RegistrationEmail(c *gin.Context) {
 		c.JSON(400, gin.H{"error": "invalid request"})
 		return
 	}
+	config := c.MustGet("config").(*config.Config)
 
 	// ベースURLをリクエストから生成
 	baseURL := config.FrontendURL
 
 	// テンプレートをレンダリング
-	config := c.MustGet("config").(*config.Config)
 	htmlStr, textStr, err := templates.RenderRegistrationVerificationHTML(config.AppName, baseURL, req.Code, req.Name, config.CopyrightName)
 	if err != nil {
 		c.JSON(500, gin.H{"error": "template render error"})
